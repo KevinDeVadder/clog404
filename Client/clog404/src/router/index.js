@@ -5,6 +5,8 @@ import Login from '@/components/Login'
 
 import Shipments from '@/components/Shipments/index'
 
+import Dashboard from '@/components/Dashboard/index'
+
 import AccessDenied from '@/components/AccessDenied'
 
 Vue.use(Router)
@@ -36,6 +38,16 @@ let router =  new Router({
         // guest: true
       }
     },
+
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Dashboard,
+      meta:{
+        //requiresAuth: true,
+        //sys_admin: true
+      }
+    }
   ]
 })
 
