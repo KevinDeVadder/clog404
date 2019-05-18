@@ -15,11 +15,11 @@
                 <td class="text-xs-left">
                 {{props.item.email}}
                 </td>
-                <td class="text-xs-left" v-if="props.item.specialization">
-                {{props.item.specialization}}
+                <td class="text-xs-left">
+                {{props.item.company}}
                 </td>
-                <td class="text-xs-left" v-if="props.item.specialization">
-                {{props.item.certificate.number}}/{{props.item.certificate.date}}
+                <td class="text-xs-left">
+                {{props.item.status}}
                 </td>
             </template>
             <template v-slot:footer>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import UserService from '@/services/UserService'
 import addAdmin from './addAdmin'
 
 export default {
@@ -61,11 +62,15 @@ export default {
             sortBy: 'Name',
             descending: false
         },
+        users:[]
     }
   },
   components:{
       addAdmin
-  }
+  },
+  async mounted() {
+        this.users = (await UserService.getAllUsers()).data
+  },
 }
 </script>
 
