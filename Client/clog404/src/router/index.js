@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import Login from '@/components/Login'
 
+import Shipments from '@/components/Shipments/index'
+
 import AccessDenied from '@/components/AccessDenied'
 
 Vue.use(Router)
@@ -18,13 +20,20 @@ let router =  new Router({
       name: 'Denied',
       component: AccessDenied
     },
-
     {
       path: '/login',
       name: 'Login',
       component: Login,
       meta: {
         guest: true
+      }
+    },
+    {
+      path: '/shipments',
+      name: 'Shipments',
+      component: Shipments,
+      meta: {
+        // guest: true
       }
     },
   ]

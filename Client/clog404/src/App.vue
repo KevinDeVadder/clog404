@@ -30,12 +30,36 @@ export default {
 </script>
 
 <style>
+.nav{
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  margin-bottom: 0;
+  font-size: 1em;
+  border-bottom: 1px grey solid;
+  cursor: pointer
+}
+.navMenu{
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  margin-bottom: 0;
+  font-size: 1em;
+  border-bottom: 1px grey solid;
+  background-color: #1976D2;
+  color: white;
+  font-size: 1.5em;
+}
+
+.nav:hover{
+  background-color: #90CAF9;
+  color: white;
+  box-shadow:10px black;
+  cursor: pointer;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
