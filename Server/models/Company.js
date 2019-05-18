@@ -1,6 +1,31 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema; 
 
+const ShipmentSchema = new Schema({
+    status: {
+        type : Boolean,
+        default: false
+    },
+    driver:{
+        id: String,
+        name: String 
+    },
+    clients:[{
+        name: String,
+        geolocation:{
+            lat: String,
+            lng: String
+        },
+        id: String 
+    }], 
+    estimatedTime: {
+        type: Number
+    },
+    realTime: {
+        type: Number
+    }
+})
+
 const CompanySchema = new Schema({
     name: {
         type: String,
@@ -11,6 +36,7 @@ const CompanySchema = new Schema({
     adminName: String,
     status: Number,
     drivers:[String],
+    shipments:[ShipmentSchema]
     
 //     partners:{
 //         type: String,
@@ -21,43 +47,6 @@ const CompanySchema = new Schema({
 //         type: String,
 //         trim: true
 //     },
-
-//     shipments:[{
-
-//         status: {
-
-//             type : Boolean,
-//             default: false
-//         },
-
-//         driver:{
-//             id: String,
-//             name: String },
-
-
-//     clients:[{
-//         name: String,
-//         geolocation: 
-//         {lat: String,
-//         long: String
-//         },
-//         id: String }], 
-
-//     estimatedTime: {
-//         type: Number
-// },
-
-// // location: {
-
-
-// // }
-
-// realTime: {
-//     type: Number
-// }
-
-// }],
-
 // queue:[{
 
 // name: {type: String},

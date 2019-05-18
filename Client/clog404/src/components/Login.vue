@@ -38,6 +38,7 @@
 </template>
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import CompanyService from '@/services/CompanyService'
 
 export default {
   data(){
@@ -57,6 +58,9 @@ export default {
           localStorage.setItem('user',JSON.stringify(response.data.user))
           localStorage.setItem('jwt',response.data.token)
           this.$store.commit('switchUserState')
+          const company = (await CompanyService.getOneCompany(response.data.user.company)).data
+          this.$store.commit('updateCompany', company)
+          // console.log(company)
           if(response.data.user.status==0){
             this.$router.push({name:'History'})
           }

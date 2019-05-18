@@ -64,6 +64,16 @@ async addDriver(req, res, next){
     catch(err){
         next(err)
     }
+},
+
+async showShipments(req, res, next){
+    try{
+        const shipments = await CompanyModel.findById({_id: req.params.id}, 'shipments')
+        res.send(shipments)
+    }
+    catch(err){
+        next(err)
+    }
 }
 
 }

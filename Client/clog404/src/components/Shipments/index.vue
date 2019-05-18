@@ -1,6 +1,6 @@
 <template>
 <div>
-  <add-driver :company="companyId"/>
+  <add-driver :company="company._id"/>
   <add-shipment/>
   <shipment v-for="shipment in shipments" :key="shipment._id" :shipment="shipment"/>
 </div>
@@ -10,117 +10,12 @@ import shipment from './Shipment'
 import addShipment from './addShipment/index'
 import addDriver from './addDriver'
 
+import CompanyService from '@/services/CompanyService'
+
 export default {
   data(){
     return{
-      companyId: JSON.parse(localStorage.getItem('user')).company,
-      shipments:[
-          {
-              status:1,
-              driver:{
-                  name: 'Costel Biju',
-                  driverId: 'dbhsba121wqb2jwh3ebmQh'
-              },
-              clients:[
-                {
-                  name: 'Auchan Colentina',
-                  geolocation:{
-                    lat: 45,
-                    lng: 45
-                  },
-                  id: '231ikg2nmdakop0'
-                },
-                
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                }
-              ],
-              estimatedTime: 2,
-              realTime: 1.5
-          },
-          {
-              status:1,
-              driver:{
-                  name: 'Costel Biju',
-                  driverId: 'dbhsba121wqb2jwh3ebmQh'
-              },
-              clients:[
-                {
-                  name: 'Auchan Colentina',
-                  geolocation:{
-                    lat: 45,
-                    lng: 45
-                  },
-                  id: '231ikg2nmdakop0'
-                },
-                
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                }
-              ],
-              estimatedTime: 2,
-              realTime: 1.5
-          }
-      ]        
+      shipments:[]     
     }
   },
   methods: {
@@ -129,7 +24,17 @@ export default {
     shipment,
     addShipment,
     addDriver
-  }
+  },
+  computed: {
+    company(){
+      var company = this.$store.getters.getCompany
+      // console.log(company)
+      this.shipments = company.shipments
+      return company
+    }
+  },
+  async mounted() {
+  },
 }
 </script>
 <style scoped>

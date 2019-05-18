@@ -4,6 +4,9 @@ export default {
     getAllCompanies(query){
         return Api().get('companies', {params:query})
     },
+    getOneCompany(id){
+        return Api().get(`/company/${id}`)
+    },
     addCompany(payload){
         return Api().post('companies', payload)
     },

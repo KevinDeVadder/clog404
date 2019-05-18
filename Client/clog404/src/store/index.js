@@ -7,16 +7,23 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   strict: true,
   state: {
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    company:{}
   },
   getters: {
     getUserState(state){
       return state.isUserLoggedIn
+    },
+    getCompany(state){
+      return state.company
     }
   },
   mutations: {
     switchUserState(state, payload){
       state.isUserLoggedIn = !state.isUserLoggedIn
+    },
+    updateCompany(state, payload){
+      state.company = payload
     }
   },
   actions: {
