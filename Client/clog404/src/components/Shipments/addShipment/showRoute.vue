@@ -77,6 +77,7 @@ export default {
   props:['center', 'driver', 'shops'],
   methods: {
   },
+
 }
 </script>
 

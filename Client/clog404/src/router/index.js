@@ -7,6 +7,10 @@ import Shipments from '@/components/Shipments/index'
 
 import Dashboard from '@/components/Dashboard/index'
 
+import History from '@/components/History'
+
+import ShipmentMap from '@/components/ShipmentMap'
+
 import AccessDenied from '@/components/AccessDenied'
 
 Vue.use(Router)
@@ -46,6 +50,24 @@ let router =  new Router({
       meta:{
         //requiresAuth: true,
         //sys_admin: true
+      }
+    },
+
+    {
+      path: '/shipments-history',
+      name: 'History',
+      component: History,
+      meta: {
+        // guest: true
+      }
+    },
+
+    {
+      path:'/shipment/',
+      name: 'ShipmentMap',
+      component: ShipmentMap,
+      meta:{
+
       }
     }
   ]
