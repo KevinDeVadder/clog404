@@ -6,7 +6,7 @@
 </template>
 <script>
 import shipment from './Shipment'
-import addShipment from './addShipment'
+import addShipment from './addShipment/index'
 
 export default {
   data(){

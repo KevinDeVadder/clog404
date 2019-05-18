@@ -1,12 +1,6 @@
 <template>
   <div>
-
-<v-layout row justify-center class="my-2">
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on }">
-        <v-btn dark raised color="blue darken-2" class="mb-3" v-on="on"><v-icon dark>add</v-icon>Add new shipment</v-btn>
-      </template>
-      <v-card>
+    <v-card>
         <v-card-title>
             <span class="headline">Select driver</span>
         </v-card-title>
@@ -25,12 +19,10 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click="$emit('close')">Close</v-btn>
           <v-btn color="blue darken-1" flat @click="selectDriver()">Next</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
-  </v-layout>
   </div>
 </template>
 
@@ -38,7 +30,6 @@
 export default {
   data () {
     return {
-        dialog: false,
         drivers:[
             'Costel Biju',
             'Florin Salam'
@@ -47,9 +38,10 @@ export default {
     }
   },
   methods: {
-      selectDriver(){
-          console.log(this.driver)
-      }
+    selectDriver(){
+        if(this.driver!='')this.$emit('update-driver', this.driver)
+        // console.log(this.driver)
+    }
   },
 }
 </script>
