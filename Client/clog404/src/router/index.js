@@ -11,6 +11,9 @@ import History from '@/components/History'
 
 import ShipmentMap from '@/components/ShipmentMap'
 
+import Providers from '@/components/Providers/index'
+import Queue from '@/components/Queue'
+
 import AccessDenied from '@/components/AccessDenied'
 
 Vue.use(Router)
@@ -68,6 +71,24 @@ let router =  new Router({
       component: ShipmentMap,
       meta:{
 
+      }
+    },
+
+    {
+      path: '/providers',
+      name: 'Providers',
+      component: Providers,
+      meta:{
+        
+      }
+    },
+
+    {
+      path: '/queue',
+      name: 'Queue',
+      component: Queue,
+      meta:{
+        
       }
     }
   ]
