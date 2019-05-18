@@ -9,7 +9,9 @@ const CompanySchema = new Schema({
     },
     adminId: String,
     adminName: String,
-    status: Number
+    status: Number,
+    drivers:[String],
+    
 //     partners:{
 //         type: String,
 //         trim: true

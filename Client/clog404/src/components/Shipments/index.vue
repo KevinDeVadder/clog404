@@ -1,6 +1,6 @@
 <template>
 <div>
-  <add-driver/>
+  <add-driver :company="companyId"/>
   <add-shipment/>
   <shipment v-for="shipment in shipments" :key="shipment._id" :shipment="shipment"/>
 </div>
@@ -13,6 +13,7 @@ import addDriver from './addDriver'
 export default {
   data(){
     return{
+      companyId: JSON.parse(localStorage.getItem('user')).company,
       shipments:[
           {
               status:1,

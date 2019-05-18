@@ -44,6 +44,7 @@ module.exports = {
                     name: user.name,
                     email: user.email,
                     status: user.status,
+                    company: user.company
                 }
                 const token = jwt.sign({id: user._id, status: user.status}, req.app.get('secretKey'), { expiresIn: '1h' });
                 res.json({status:"success", message: "user found!!!", data:{user: toSend, token:token}});

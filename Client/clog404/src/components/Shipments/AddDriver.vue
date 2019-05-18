@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import CompanyService from '@/services/CompanyService'
+
 export default {
   data () {
     return {
@@ -52,8 +54,8 @@ export default {
     async submit(){
         if(!(this.user.email === '') && !(this.user.password === '') && !(this.user.name === '')){
           try{
-            // const response = (await UserService.addSpecial(this.user)).data
-            // console.log(response)
+            const response = (await CompanyService.addDriver(this.company, this.user)).data
+            console.log(response)
             this.$router.go();
           }
           catch(err){
@@ -62,6 +64,7 @@ export default {
         }
       }
   },
+  props:['company']
 }
 </script>
 
