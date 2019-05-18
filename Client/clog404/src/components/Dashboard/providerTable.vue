@@ -13,17 +13,16 @@
                 {{props.item.name}}
                 </td>
                 <td class="text-xs-left">
-                {{props.item.email}}
+                {{props.item.adminName}}
                 </td>
-                <td class="text-xs-left" v-if="props.item.specialization">
-                {{props.item.specialization}}
+                <td class="text-xs-left">
+                {{props.item.adminId}}
                 </td>
-                <td class="text-xs-left" v-if="props.item.specialization">
-                {{props.item.certificate.number}}/{{props.item.certificate.date}}
+                <td class="text-xs-left">
                 </td>
             </template>
             <template v-slot:footer>
-            </template>
+            </template> 
         </v-data-table>
         <add-provider/>
     </v-flex>
@@ -32,6 +31,8 @@
 
 <script>
 import addProvider from './addProvider'
+
+import CompanyService from '@/services/CompanyService'
 
 export default {
   data () {
@@ -46,8 +47,8 @@ export default {
             value: 'email'
             },
             {
-            text: 'Admin name',
-            value: 'admin'
+            text: 'Admin id',
+            value: 'id'
             },
             {
                 text: 'Program',
@@ -58,10 +59,14 @@ export default {
             sortBy: 'Name',
             descending: false
         },
+        providers:[]
     }
   },
   components:{
       addProvider
+  },
+  async mounted(){
+      this.providers = (await CompanyService.getAllCompanies({status:0})).data
   }
 }
 </script>

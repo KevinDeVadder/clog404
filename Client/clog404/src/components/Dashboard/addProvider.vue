@@ -13,13 +13,13 @@
             <v-container grid-list-md>
                 <v-layout wrap>
                 <v-flex xs12>
-                    <v-text-field label="Admin email*" required v-model='company.admin.email'></v-text-field>
+                    <v-text-field label="Admin email*" type="email" required v-model='company.admin.email'></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                     <v-text-field label="Admin password*" type="password" required v-model='company.admin.password'></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                    <v-text-field label="Admin name*" type="password" required v-model='company.admin.password'></v-text-field>
+                    <v-text-field label="Admin name*" type="text" required v-model='company.admin.name'></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                     <v-text-field label="Company name*" type="text" required v-model='company.name'></v-text-field>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import CompanyService from '@/services/CompanyService'
+
 export default {
   data () {
     return {
@@ -49,16 +51,18 @@ export default {
                 name:'',
                 email:'',
                 password:'',
-            }
+                status: 2
+            },
+            status: 0
         }
     }
   },
   methods: {
     async submit(){
-        if(!(this.user.email === '') && !(this.user.password === '') && !(this.user.name === '')){
+        if(!(this.company.admin.email === '') && !(this.company.admin.password === '') && !(this.company.admin.name === '') && !(this.company.name === '')){
           try{
-            // const response = (await UserService.addSpecial(this.user)).data
-            // console.log(response)
+            const response = (await CompanyService.addCompany(this.company)).data
+            console.log(response)
             this.$router.go();
           }
           catch(err){

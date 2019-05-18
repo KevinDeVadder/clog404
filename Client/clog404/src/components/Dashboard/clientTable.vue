@@ -13,13 +13,12 @@
                 {{props.item.name}}
                 </td>
                 <td class="text-xs-left">
-                {{props.item.email}}
+                {{props.item.adminId}}
                 </td>
-                <td class="text-xs-left" v-if="props.item.specialization">
-                {{props.item.specialization}}
+                <td class="text-xs-left">
+                {{props.item.adminName}}
                 </td>
-                <td class="text-xs-left" v-if="props.item.specialization">
-                {{props.item.certificate.number}}/{{props.item.certificate.date}}
+                <td class="text-xs-left">
                 </td>
             </template>
             <template v-slot:footer>
@@ -33,6 +32,8 @@
 <script>
 import addClient from './addClient'
 
+import CompanyService from '@/services/CompanyService'
+
 export default {
   data () {
     return {
@@ -42,8 +43,8 @@ export default {
             value: 'name'
             },
             {
-            text: 'Admin email',
-            value: 'email'
+            text: 'Admin id',
+            value: 'id'
             },
             {
             text: 'Admin name',
@@ -58,11 +59,16 @@ export default {
             sortBy: 'Name',
             descending: false
         },
+        clients:[]
     }
   },
   components:{
       addClient
-  }
+  },
+  async mounted() {
+      this.clients = (await CompanyService.getAllCompanies({status:1})).data
+      console.log(this.clients)
+  },
 }
 </script>
 
