@@ -1,5 +1,6 @@
 <template>
 <div>
+  <add-driver/>
   <add-shipment/>
   <shipment v-for="shipment in shipments" :key="shipment._id" :shipment="shipment"/>
 </div>
@@ -7,6 +8,7 @@
 <script>
 import shipment from './Shipment'
 import addShipment from './addShipment/index'
+import addDriver from './addDriver'
 
 export default {
   data(){
@@ -124,7 +126,8 @@ export default {
   },
   components:{
     shipment,
-    addShipment
+    addShipment,
+    addDriver
   }
 }
 </script>
