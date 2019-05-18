@@ -37,7 +37,7 @@
 </div>
 </template>
 <script>
-// import AuthenticationService from '@/services/AuthenticationService'
+import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
   data(){
@@ -53,21 +53,21 @@ export default {
       if(!(this.user.email === '') && !(this.user.password === '')){
         try{
           const response = (await AuthenticationService.login(this.user)).data
-          // console.log(response.data);
+          console.log(response.data);
           localStorage.setItem('user',JSON.stringify(response.data.user))
           localStorage.setItem('jwt',response.data.token)
           this.$store.commit('switchUserState')
           if(response.data.user.status==0){
-            this.$router.push({name:'driver'})
+            this.$router.push({name:'History'})
           }
           else if(response.data.user.status==1){
-            this.$router.push({name:'furnizor'})
+            this.$router.push({name:'Shipments'})
           }
           else if(response.data.user.status==2){
-            this.$router.push({name: 'client'})
+            this.$router.push({name: 'Queue'})
           }
           else if(response.data.user.status==3){
-            this.$router.push({name: 'admin'})
+            this.$router.push({name: 'Admin'})
           }
         }
         catch(err){

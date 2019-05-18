@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import {store} from './store/index'
+
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -41,5 +43,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  store: store,
   template: '<App/>'
 })

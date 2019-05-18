@@ -25,6 +25,19 @@ export default {
     return{
       drawer: false
     }
+  },
+  computed: {
+	    isUserLoggedIn(){
+        return this.$store.getters.getUserState
+      }
+  },
+	methods: {
+  		logOut(){
+        localStorage.removeItem('user')
+        localStorage.removeItem('jwt');
+        this.$store.commit('switchUserState')
+        this.$router.push({name: 'login'})
+      }
   }
 }
 </script>
