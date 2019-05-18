@@ -1,13 +1,31 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+<div id="app">
+  <v-app>
+    <v-toolbar flat app color="blue darken-2" class="white--text">
+      <v-toolbar-side-icon @click="drawer = !drawer" class="white--text"></v-toolbar-side-icon>
+      <v-toolbar-title>Clog404</v-toolbar-title>
+    </v-toolbar>
+
+    <v-navigation-drawer app v-model="drawer">
+      <p class="navMenu">Menu</p> 
+      <router-link v-if='!isUserLoggedIn' to='/login' tag='p' class='nav'>Login</router-link>
+      <p class="nav" v-if='isUserLoggedIn' @click='logOut'>Sign-out</p>
+    </v-navigation-drawer>
+    <v-content>
+      <router-view/>
+    </v-content>
+  </v-app>
+</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return{
+      drawer: false
+    }
+  }
 }
 </script>
 
