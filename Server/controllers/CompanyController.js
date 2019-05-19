@@ -1,6 +1,6 @@
 const CompanyModel = require('../models/Company');
 const UserModel = require('../models/User');
-
+const locationSorter = require('../helpers/location')
 
 module.exports = {
 
@@ -72,6 +72,63 @@ async showShipments(req, res, next){
         res.send(shipments)
     }
     catch(err){
+        next(err)
+    }
+},
+
+async addPartners(req, res, next){
+    try{
+        const company = await CompanyModel.findById({_id: req.params.id})
+        company.partners.push(req.body.partner)
+        company.save()
+        res.send(company)
+    }
+    catch(err){
+        next(err)
+    }
+},
+
+async getCompanyNames(req, res, next){
+    try {  
+        const companies = await CompanyModel.find(req.query, 'name');
+        // console.log(companies)
+        res.send(companies);
+    }
+    catch(err) {
+        next(err)
+    }
+},
+
+async getCompanyLocation(req, res, next){
+    try {  
+        const company = await CompanyModel.findById({_id: req.params.id}, 'location');
+        // console.log(companies)
+        res.send(company);
+    }
+    catch(err) {
+        next(err)
+    }
+},
+
+async addShipment(req, res, next){
+    try{
+        var data = req.body
+        // console.log(data)
+        data.temp = []
+        for(var i = 0, len = data.clients.length; i < len; i++){
+            var good = await CompanyModel.findOne({name: data.clients[i]}, 'name location')
+            good.id = good._id
+            data.temp.push(good)
+        }
+        data.clients = locationSorter(data.temp)
+        console.log(data)
+        const company = await CompanyModel.findById({_id: req.params.id})
+        company.shipments.push(data)
+        company.save()
+        res.send(company)
+    }
+    catch(err){
+        console.log(err)
         next(err)
     }
 }

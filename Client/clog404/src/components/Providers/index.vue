@@ -12,14 +12,6 @@ export default {
   data(){
     return{
         providers:[
-            {name: 'S.C. Placeholder S.R.L',
-            shipmentNumber: 13,
-            id: 123},
-                        {name: 'S.C. Placeholder S.R.L',shipmentNumber: 18,
-            id: 123},            {name: 'S.C. Placeholder S.R.L',shipmentNumber: 190,
-            id: 123},            {name: 'S.C. Placeholder S.R.L',shipmentNumber: 54,
-            id: 123},            {name: 'S.C. Placeholder S.R.L',shipmentNumber: 90,
-            id: 123}
         ]
     }
   },
@@ -28,7 +20,15 @@ export default {
   components:{
     provider,
     addProvider
-  }
+  },
+  computed: {
+  company(){
+      var company = this.$store.getters.getCompany
+      // console.log(company)
+      this.providers = company.partners
+      return company
+    }
+  },
 }
 </script>
 <style scoped>

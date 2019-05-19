@@ -13,6 +13,8 @@
                     label="Shops"
                     multiple
                     clearable
+                    item-text="name"
+                    item-value="name"
                     v-model="pickedShops"
                     hint="Pick the shops you want this driver to go to"
                     persistent-hint
@@ -32,14 +34,12 @@
 </template>
 
 <script>
+import CompanyService from '@/services/CompanyService'
+
 export default {
   data () {
     return {
-        shops:[
-            'Auchan Colentina',
-            'Auchan Militari 1',
-            'Auchan Militari 2'
-        ],
+        shops:[],
         pickedShops:[]
     }
   },
@@ -47,6 +47,10 @@ export default {
     selectShops(){
       this.$emit('update-shops', this.pickedShops)
     }
+  },
+  async mounted() {
+    this.shops = (await CompanyService.getCompaniesnames({status: 1})).data
+    console.log(this.shops)
   },
 }
 </script>

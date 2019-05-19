@@ -23,6 +23,9 @@ router.post('/companies', validators.validateAdmin, companyController.addCompany
 router.delete('/company/:id', validators.validateAdmin, companyController.deleteCompany);
 router.get('/company/:id', companyController.showOne);
 router.post('/company/:id/drivers', companyController.addDriver);
+router.get('/companies/name', companyController.getCompanyNames);
+router.post('/company/:id/shipments', companyController.addShipment)
+
 
 router.post('/test', (req, res)=>{
     res.send(req.body)

@@ -68,14 +68,25 @@
 </template>
 
 <script>
+import CompanyService from '@/services/CompanyService'
+
 export default {
   data () {
     return {
         finished: true,
+        shipment: {},
+        companyId: JSON.parse(localStorage.getItem('user')).company
     }
   },
   props:['center', 'driver', 'shops'],
   methods: {
+  },
+  async mounted() {
+      var shipment = {}
+      shipment.driver = this.driver
+      shipment.clients = this.shops
+      console.log(shipment)
+      const response = (await CompanyService.addShipment(this.companyId, shipment)).data
   },
 
 }

@@ -3,7 +3,7 @@
   <v-layout row justify-center class="my-2">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn dark raised color="blue darken-2" class="mb-3" v-on="on"><v-icon dark>add</v-icon>Add new shipment</v-btn>
+        <v-btn dark raised color="blue darken-2" class="mb-3" v-on="on"><v-icon dark>add</v-icon>Add provider</v-btn>
       </template>
     <v-card>
         <v-card-title>

@@ -7,7 +7,7 @@
       </v-toolbar>
         <v-layout>
             <v-flex sm-12 class="my-5">
-                <h3>Shipment number: {{provider.shipmentNumber}}</h3>
+                <h3>Shipment number: Logic TBA {{provider.shipmentNumber}}</h3>
             </v-flex>
         </v-layout>
     </div>

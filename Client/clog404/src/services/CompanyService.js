@@ -12,5 +12,11 @@ export default {
     },
     addDriver(companyId, payload){
         return Api().post(`company/${companyId}/drivers`, payload)
+    },
+    getCompaniesnames(query){
+        return Api().get('companies/name', {params:query})
+    },
+    addShipment(companyId, payload){
+        return Api().post(`company/${companyId}/shipments`, payload)
     }
 }

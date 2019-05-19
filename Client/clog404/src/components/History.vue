@@ -13,112 +13,23 @@ import shipment from './Shipments/Shipment'
 export default {
   data(){
     return{
-      shipments:[
-          {
-              status:1,
-              clients:[
-                {
-                  name: 'Auchan Colentina',
-                  geolocation:{
-                    lat: 45,
-                    lng: 45
-                  },
-                  id: '231ikg2nmdakop0'
-                },
-                
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                },
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                }
-              ],
-              estimatedTime: 2,
-              realTime: 1.5
-          },
-          {
-              status:1,
-              clients:[
-                {
-                  name: 'Auchan Colentina',
-                  geolocation:{
-                    lat: 45,
-                    lng: 45
-                  },
-                  id: '231ikg2nmdakop0'
-                },
-                
-                {
-                  name: 'Dedeman Colentina',
-                  geolocation:{
-                    lat: 48,
-                    lng: 45
-                  },
-                  id: 'glkjn3qkjbeqk'
-                }
-              ],
-              estimatedTime: 2,
-              realTime: 1.5
-          }
-      ]        
+      shipments:[]        
     }
   },
   methods: {
   },
   components:{
     shipment,
-  }
+  },
+  computed: {
+    company(){
+      var user = JSON.parse(localStorage.getItem('user'))._id
+      var company = this.$store.getters.getCompany
+      // console.log(company)
+      this.shipments = company.shipments.filter(item=>{return item.driver.id==user})
+      return company
+    }
+  },
 }
 </script>
 <style scoped>

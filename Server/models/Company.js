@@ -7,16 +7,14 @@ const ShipmentSchema = new Schema({
         default: false
     },
     driver:{
-        id: String,
-        name: String 
+        type: String 
     },
     clients:[{
         name: String,
-        geolocation:{
-            lat: String,
-            lng: String
-        },
-        id: String 
+        location:[Number
+            
+    ],
+        _id: String 
     }], 
     estimatedTime: {
         type: Number
@@ -36,12 +34,12 @@ const CompanySchema = new Schema({
     adminName: String,
     status: Number,
     drivers:[String],
-    shipments:[ShipmentSchema]
-    
-//     partners:{
-//         type: String,
-//         trim: true
-//     },
+    shipments:[ShipmentSchema],
+    partners:[{
+        name: String,
+        id: String
+    }],
+    location: [Number]
 
 //     program:{
 //         type: String,
