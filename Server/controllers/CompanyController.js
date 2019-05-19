@@ -121,6 +121,7 @@ async addShipment(req, res, next){
             data.temp.push(good)
         }
         data.clients = locationSorter(data.temp)
+        data.driver = data.driver.name
         console.log(data)
         const company = await CompanyModel.findById({_id: req.params.id})
         company.shipments.push(data)
